@@ -44,3 +44,12 @@ column_names = {'Timestamp': 'timestamp'}
 #data.timestamp = pd.to_datetime(data.timestamp)
 print(data.head())
 
+session = sugarcrm.Session("https://crm.uni-dubna.ru/service/v4/rest.php","alexmar", "Jrtjeas33")
+#note = sugarcrm.Note(name="test note")
+#session.set_entry(note)
+modules = session.get_available_modules()
+for m in modules:
+    print (m.module_key)
+note_query = sugarcrm.Note(name="test%")
+results = session.get_entry_list(note_query)
+print(results)
