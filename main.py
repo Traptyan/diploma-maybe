@@ -5,6 +5,8 @@ import pandas as pd
 import json
 import sugarcrm
 
+from applicantsModule import applicantsModule
+
 SCOPE = ["https://docs.google.com/spreadsheets/d/1gyYDqjEGkRrTDdJQGTb3sEgHymJXg49m-Yc7lfKKi94/edit#gid=294310776"]
 SECRETS_FILE = "api-project-313216-1dd8217a1523.json"
 SPREADSHEET = "Новая форма (Ответы)"
@@ -45,11 +47,16 @@ column_names = {'Timestamp': 'timestamp'}
 print(data.head())
 
 session = sugarcrm.Session("https://crm.uni-dubna.ru/service/v4/rest.php","alexmar", "Jrtjeas33")
+Applicants = applicantsModule()
+
+
+
+
 #note = sugarcrm.Note(name="test note")
 #session.set_entry(note)
-modules = session.get_available_modules()
-for m in modules:
-    print (m.module_key)
-note_query = sugarcrm.Note(name="test%")
-results = session.get_entry_list(note_query)
-print(results)
+#modules = session.get_available_modules()
+#for m in modules:
+#    print (m.module_key)
+#note_query = sugarcrm.Note(name="test%")
+#results = session.get_entry_list(note_query)
+#print(results)
