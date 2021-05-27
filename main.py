@@ -48,7 +48,7 @@ print(data.head())
 
 session = sugarcrm.Session("https://crm.uni-dubna.ru/service/v4/rest.php","alexmar", "Jrtjeas33")
 Applicants = applicantsModule()
-
+a = session.get_entry(Applicants.module, )
 
 
 
