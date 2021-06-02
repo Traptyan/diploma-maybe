@@ -35,7 +35,7 @@ numMessages = len(unRead[1][0].split())
 print("messages from me: %s" % numMessages)
 
 with MailBox('imap.gmail.com').login(user,password) as mailbox:
-    mailbox.seen(mailbox.fetch("FROM me"), False)
+    mailbox.seen(mailbox.fetch("FROM me"), False) #false развидел
 
 unRead = mail.uid('Search', 'FROM', '"me"', '(UNSEEN)')
 numMessages = len(unRead[1][0].split())
