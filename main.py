@@ -7,8 +7,9 @@ from imap_tools import MailBox, AND
 import sugarcrm
 from applicantsModule import applicantsModule
 
-#SCOPE = ["https://docs.google.com/spreadsheets/d/1gyYDqjEGkRrTDdJQGTb3sEgHymJXg49m-Yc7lfKKi94/edit#gid=294310776"]
-SCOPE = ["https://drive.google.com/drive/my-drive"]
+SCOPE = "https://docs.google.com/spreadsheets/d/1RmKzWzTIaVn2XsQKcupycPQWfHvOrWIkENv9VGK-1L4/edit#gid=1467420316"
+
+#SCOPE = ["https://drive.google.com/drive/my-drive"]
 SECRETS_FILE = "api-project-313216-1dd8217a1523.json"
 SPREADSHEET = "Новая форма (Ответы)"
 json_key = json.load(open(SECRETS_FILE))
@@ -17,10 +18,10 @@ credentials = SignedJwtAssertionCredentials(json_key['client_email'],
 gc = gspread.service_account()
 for sheet in gc.openall():
     print("{} - {}".format(sheet.title, sheet.id))
-workbook = gc.open(SPREADSHEET)
+workbook = gc.open_by_url(SCOPE)
 sheet = workbook.sheet1
 data = pd.DataFrame(sheet.get_all_values())
-print(data.head())
+print(data)
 
 
 user = 'alexandr.martinovitch@gmail.com'
@@ -34,8 +35,11 @@ unRead = mail.uid('Search', 'FROM', '"me"', '(UNSEEN)')
 numMessages = len(unRead[1][0].split())
 print("messages from me: %s" % numMessages)
 
+
+
 with MailBox('imap.gmail.com').login(user,password) as mailbox:
-    mailbox.seen(mailbox.fetch("FROM me"), False) #false развидел
+    anred = mailbox.fetch("FROM me UNSEEN")
+    mailbox.seen(anred, False) #false развидел
 
 unRead = mail.uid('Search', 'FROM', '"me"', '(UNSEEN)')
 numMessages = len(unRead[1][0].split())
