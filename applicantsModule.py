@@ -1,7 +1,6 @@
 import sugarcrm
 
 class applicantsModule(sugarcrm.SugarObject):
-
     module = "Pupil_Pupils"
 
 
