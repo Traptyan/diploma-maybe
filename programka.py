@@ -57,6 +57,7 @@ while (True):
                         }
         data.rename(columns=column_names, inplace=True)
         convertedArray = data.to_numpy()
+        print(convertedArray)
 
         session = sugarcrm.Session("https://crm.uni-dubna.ru/service/v4/rest.php", "Botich", "D1pomchik_Rul1t")
         for j in range(cnt[item]):
@@ -69,6 +70,6 @@ while (True):
                                           grade_c=convertedArray[length - (j + 1), 6],
                                           event=sheet.spreadsheet.title.split(' ')[0],
                                           subject=sheet.spreadsheet.title.split(' ')[1])
-            session.set_entry(Applicants)
+            #session.set_entry(Applicants)
 
     time.sleep(60)
